@@ -22,7 +22,7 @@
         {
             get
             {
-                throw new NotImplementedException();
+                return _articles;
             }
         }
 
@@ -30,7 +30,7 @@
         {
             get
             {
-                throw new NotImplementedException();
+                return _balance;
             }
         }
         #endregion public methods
