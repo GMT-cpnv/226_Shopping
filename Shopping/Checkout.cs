@@ -10,12 +10,26 @@
         #region public methods
         public void Add(List<Article> articles)
         {
-            throw new NotImplementedException();
+            _articles.AddRange(articles);
+            _balance += articles.Count;
         }
 
         public List<Article> Remove(Boolean empty = false)
         {
-            throw new NotImplementedException();
+            List<Article> removedArticles = new List<Article>();
+
+            if (empty)
+            {
+                removedArticles.AddRange(_articles);
+                _articles.Clear();
+            }
+            else
+            {
+                _articles.Remove(_articles.Last());
+                removedArticles.Add(_articles.Last());
+            }
+
+            return removedArticles;
         }
 
         public List<Article> Articles
