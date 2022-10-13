@@ -6,6 +6,7 @@ namespace Shopping
     {
         #region private attributes
         private List<Article> _articles = new List<Article>();
+        private bool _released = false;
         #endregion private attributes
 
         #region public methods
@@ -27,8 +28,8 @@ namespace Shopping
                 _articles.Clear();
             } else
             {
-                _articles.Remove(_articles.Last());
                 removedArticles.Add(_articles.Last());
+                _articles.Remove(_articles.Last());
             }
 
             return removedArticles;
@@ -36,7 +37,7 @@ namespace Shopping
 
         public void Release()
         {
-            throw new NotImplementedException();
+            _released = true;
         }
 
         public List<Article> Articles
@@ -47,7 +48,12 @@ namespace Shopping
             }
         }
 
-        public bool? IsReleased { get; set; }
+        public bool? IsReleased { 
+            get
+            {
+                return _released;
+            }
+        }
         #endregion public methods
     }
 }

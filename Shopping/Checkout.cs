@@ -11,7 +11,7 @@
         public void Add(List<Article> articles)
         {
             _articles.AddRange(articles);
-            _balance += articles.Count;
+            _balance += 8 * articles.Count;
         }
 
         public List<Article> Remove(Boolean empty = false)
@@ -25,8 +25,8 @@
             }
             else
             {
-                _articles.Remove(_articles.Last());
                 removedArticles.Add(_articles.Last());
+                _articles.Remove(_articles.Last());
             }
 
             return removedArticles;
@@ -50,7 +50,7 @@
 
         public void StartCashingProcess()
         {
-            throw new NotImplementedException();
+            _balance = 0f;
         }
         #endregion public methods
 
