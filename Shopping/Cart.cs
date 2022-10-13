@@ -34,6 +34,11 @@ namespace Shopping
             return removedArticles;
         }
 
+        public void Release()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Article> Articles
         {
             get
@@ -41,6 +46,8 @@ namespace Shopping
                 return _articles;
             }
         }
+
+        public bool? IsReleased { get; set; }
         #endregion public methods
     }
 }
