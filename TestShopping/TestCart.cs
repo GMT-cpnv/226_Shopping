@@ -29,23 +29,44 @@ namespace TestShopping
         }
 
         [Test]
-        public void Remove_AllArticleNotEmptyCart_Success()
+        public void Remove_OneArticleFromCartWithArticles_Success()
         {
             //given
             //refer to Setup
             int amountOfArticlesToAdd = 10;
             List<Article> expectedArticles = ArticleGenerator.Generate(amountOfArticlesToAdd);
-            List<Article> actualArticles = new List<Article>();
+            List<Article> articlesReadyToCheckout = new List<Article>();
+
+            _cart.Add(expectedArticles);
+            Assert.AreEqual(expectedArticles.Count(), _cart.Articles.Count());
+
+            //when
+            articlesReadyToCheckout = _cart.Remove();
+
+            //then
+            Assert.AreEqual(amountOfArticlesToAdd-1, _cart.Articles.Count());
+            Assert.AreEqual(1, articlesReadyToCheckout.Count());
+        }
+
+        [Test]
+        public void Remove_AllProductsFromCartWithArticles_Success()
+        {
+            //given
+            //refer to Setup
+            int amountOfArticlesToAdd = 10;
+            List<Article> expectedArticles = ArticleGenerator.Generate(amountOfArticlesToAdd);
+            List<Article> articlesReadyToCheckout = new List<Article>();
             
             _cart.Add(expectedArticles);
             Assert.AreEqual(expectedArticles.Count(), _cart.Articles.Count());
 
             //when
-            actualArticles = _cart.Remove();
+            articlesReadyToCheckout = _cart.Remove(true);
 
             //then
-            Assert.AreEqual(expectedArticles.Count(), actualArticles.Count());
             Assert.AreEqual(0, _cart.Articles.Count());
+            Assert.AreEqual(expectedArticles.Count(), articlesReadyToCheckout.Count());
+
         }
     }
 }

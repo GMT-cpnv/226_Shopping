@@ -14,11 +14,22 @@ namespace Shopping
             _articles.AddRange(articles);
         }
 
-        public List<Article> Remove(List<Article>? articles = null)
+
+
+
+        public List<Article> Remove(Boolean clearCart = false)
         {
             List<Article> removedArticles = new List<Article>();
-            removedArticles.AddRange(_articles);
-            _articles.Clear();
+
+            if (clearCart)
+            {
+                removedArticles.AddRange(_articles);
+                _articles.Clear();
+            } else
+            {
+                _articles.Remove(_articles.Last());
+                removedArticles.Add(_articles.Last());
+            }
 
             return removedArticles;
         }
